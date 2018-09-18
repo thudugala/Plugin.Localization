@@ -16,6 +16,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseUrl>https://github.com/tmt242001/Plugin.Localization/blob/master/LICENSE</PackageLicenseUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>Build cross-platform multilingual applications with Xamarin.Forms using the built-in .NET localization framework.</Description>
   </PropertyGroup>
   
   <ItemGroup>

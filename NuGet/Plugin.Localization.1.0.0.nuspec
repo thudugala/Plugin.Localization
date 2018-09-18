@@ -8,7 +8,7 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <licenseUrl>https://github.com/tmt242001/Plugin.Localization/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/tmt242001/Plugin.Localization</projectUrl>
-    <description>Package Description</description>
+    <description>Build cross-platform multilingual applications with Xamarin.Forms using the built-in .NET localization framework.</description>
     <tags>abel,multi language,resx,localization,xamarin forms,localizing,internacionalization</tags>
     <repository type="git" url="https://github.com/tmt242001/Plugin.Localization" />
     <files>
