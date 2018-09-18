@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Plugin.Localization</name>
+    </assembly>
+    <members>
+        <member name="T:Plugin.Localization.ILanguageConvertor">
+            <summary>
+            Convert LanguageCode to Dotnet Language Code.
+            </summary>
+        </member>
+        <member name="M:Plugin.Localization.ILanguageConvertor.AndroidToDotnetLanguage(System.String)">
+            <summary>
+            Convert Android Language to Dotnet Language.
+            </summary>
+            <param name="androidLanguage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Plugin.Localization.ILanguageConvertor.AndroidToDotnetFallbackLanguage(System.String)">
+            <summary>
+            Convert Android Language to Dotnet Language.
+            </summary>
+            <param name="netLanguage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Plugin.Localization.ILanguageConvertor.IOsToDotnetLanguage(System.String)">
+            <summary>
+            Convert iOS Language to Dotnet Language.
+            </summary>
+            <param name="iOsLanguage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Plugin.Localization.ILanguageConvertor.IOsToDotnetFallbackLanguage(System.String)">
+            <summary>
+            Convert iOS Language to Dotnet Language.
+            </summary>
+            <param name="netLanguage"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Plugin.Localization.ILocalizeHelper">
+            <summary>
+            Localize Helper for platform.
+            </summary>
+        </member>
+        <member name="M:Plugin.Localization.ILocalizeHelper.GetCurrentCultureInfo(Plugin.Localization.ILanguageConvertor)">
+            <summary>
+            Get Current CultureInfo from platform.
+            </summary>
+            <param name="languageConvertor"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Plugin.Localization.ITranslateManager">
+            <summary>
+            Set the correct resource files for the application
+            </summary>
+        </member>
+        <member name="M:Plugin.Localization.ITranslateManager.GetLoadedAssemblyList">
+            <summary>
+            Get Loaded Assembly with Assembly Attribute ResxLocalize to set Culture.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Plugin.Localization.ITranslateManager.SetCulture">
+            <summary>
+            Find the current culture on the device and set the resource file.
+            </summary>
+        </member>
+        <member name="M:Plugin.Localization.ITranslateManager.SetLocale(System.Globalization.CultureInfo)">
+            <summary>
+            Set the Thread for locale-aware methods
+            </summary>
+            <param name="cultureInfo"></param>
+        </member>
+        <member name="T:Plugin.Localization.LanguageConvertor">
+            <inheritdoc />
+        </member>
+        <member name="M:Plugin.Localization.LanguageConvertor.AndroidToDotnetLanguage(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Plugin.Localization.LanguageConvertor.AndroidToDotnetFallbackLanguage(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Plugin.Localization.LanguageConvertor.IOsToDotnetLanguage(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Plugin.Localization.LanguageConvertor.IOsToDotnetFallbackLanguage(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Plugin.Localization.PlatformCulture">
+            <summary>
+            Get the language code and locale code
+            </summary>
+        </member>
+        <member name="M:Plugin.Localization.PlatformCulture.#ctor(System.String)">
+            <summary>
+            Set language code and locale code from input string.
+            </summary>
+            <param name="platformCultureString"></param>
+        </member>
+        <member name="P:Plugin.Localization.PlatformCulture.LanguageCode">
+            <summary>
+            Get the language code
+            </summary>
+        </member>
+        <member name="P:Plugin.Localization.PlatformCulture.LocaleCode">
+            <summary>
+            Get the locale code
+            </summary>
+        </member>
+        <member name="P:Plugin.Localization.PlatformCulture.PlatformString">
+            <summary>
+            Get the platform string
+            </summary>
+        </member>
+        <member name="M:Plugin.Localization.PlatformCulture.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Plugin.Localization.ResxLocalizeAttribute">
+            <summary>
+            Only load Assemblies with this Attribute to Translate.
+            </summary>
+        </member>
+        <member name="T:Plugin.Localization.TranslateManager">
+            <inheritdoc />
+        </member>
+        <member name="M:Plugin.Localization.TranslateManager.#ctor(Plugin.Localization.ILocalizeHelper,Plugin.Localization.ILanguageConvertor)">
+            <inheritdoc />
+        </member>
+        <member name="M:Plugin.Localization.TranslateManager.GetLoadedAssemblyList">
+            <inheritdoc />
+        </member>
+        <member name="M:Plugin.Localization.TranslateManager.SetCulture">
+            <inheritdoc />
+        </member>
+        <member name="M:Plugin.Localization.TranslateManager.SetLocale(System.Globalization.CultureInfo)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

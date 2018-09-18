@@ -15,12 +15,9 @@
     <RepositoryUrl>https://github.com/tmt242001/Plugin.Localization</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseUrl>https://github.com/tmt242001/Plugin.Localization/blob/master/LICENSE</PackageLicenseUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
-  </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms">
       <Version>3.2.0.839982</Version>
@@ -31,7 +28,7 @@
     <Compile Remove="**/Platform/**/*.cs" />
     <None Include="**/Platform/**/*.cs" />
   </ItemGroup>
-  
+ 
   <ItemGroup Condition="$(TargetFramework.StartsWith('MonoAndroid'))">
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
