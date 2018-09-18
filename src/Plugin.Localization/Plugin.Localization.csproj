@@ -6,11 +6,15 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Authors>ththlk,masonyc,TimNZ</Authors>
     <Company>Abel Software Limited</Company>
     <PackageTags>abel,multi language,resx,localization,xamarin forms,localizing,internacionalization</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/tmt242001/Plugin.Localization</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/tmt242001/Plugin.Localization</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseUrl>https://github.com/tmt242001/Plugin.Localization/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
