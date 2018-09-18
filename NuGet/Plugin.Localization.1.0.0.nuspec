@@ -11,10 +11,11 @@
     <projectUrl>https://github.com/tmt242001/Plugin.Localization</projectUrl>
 	<iconUrl>https://raw.githubusercontent.com/tmt242001/Plugin.Localization/master/Screenshots/icon.png</iconUrl>
     <description>Build cross-platform multilingual applications with Xamarin.Forms using the built-in .NET localization framework.</description>	
+	<copyright>Copyright © Tharindu Thudugala</copyright>
     <tags>abel,multi language,resx,localization,xamarin forms,localizing,internacionalization</tags>
-    <repository type="git" url="https://github.com/tmt242001/Plugin.Localization" />
-    <files>
-      <file src="lib\**" target="lib" />
-    </files>
+    <repository type="git" url="https://github.com/tmt242001/Plugin.Localization" />    
   </metadata>
+  <files>
+    <file src="lib\**" target="lib" />
+  </files>
 </package>
