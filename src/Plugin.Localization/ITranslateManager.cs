@@ -24,6 +24,6 @@ namespace Plugin.Localization
         /// Set the Thread for locale-aware methods
         /// </summary>
         /// <param name="cultureInfo"></param>
-        void SetCultureInThread(CultureInfo cultureInfo);
+        void SetLocale(CultureInfo cultureInfo);
     }
 }

@@ -11,11 +11,13 @@ namespace Plugin.Localization
     public class TranslateManager : ITranslateManager
     {
         private readonly ILocalizeHelper _localizeHelper;
+        private readonly ILanguageConvertor _languageConvertor;
 
         /// <inheritdoc />
-        public TranslateManager(ILocalizeHelper localizeHelper)
+        public TranslateManager(ILocalizeHelper localizeHelper, ILanguageConvertor languageConvertor)
         {
             _localizeHelper = localizeHelper;
+            _languageConvertor = languageConvertor;
         }
 
         /// <inheritdoc />
@@ -31,7 +33,7 @@ namespace Plugin.Localization
         /// <inheritdoc />
         public virtual void SetCulture()
         {
-            var currentCultureInfo = _localizeHelper?.GetCurrentCultureInfo();
+            var currentCultureInfo = _localizeHelper?.GetCurrentCultureInfo(_languageConvertor);
             if (currentCultureInfo is null)
             {
                 return;
@@ -54,11 +56,11 @@ namespace Plugin.Localization
                 }
             }
 
-            SetCultureInThread(currentCultureInfo);
+            SetLocale(currentCultureInfo);
         }
 
         /// <inheritdoc />
-        public virtual void SetCultureInThread(CultureInfo cultureInfo)
+        public virtual void SetLocale(CultureInfo cultureInfo)
         {
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;

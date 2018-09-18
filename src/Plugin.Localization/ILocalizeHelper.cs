@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
+﻿using System.Globalization;
 
 namespace Plugin.Localization
 {
+    /// <summary>
+    /// Localize Helper for platform.
+    /// </summary>
     public interface ILocalizeHelper
     {
-        CultureInfo GetCurrentCultureInfo();
+        /// <summary>
+        /// Get Current CultureInfo from platform.
+        /// </summary>
+        /// <param name="languageConvertor"></param>
+        /// <returns></returns>
+        CultureInfo GetCurrentCultureInfo(ILanguageConvertor languageConvertor);
     }
 }

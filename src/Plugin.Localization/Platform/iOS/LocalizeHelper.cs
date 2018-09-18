@@ -9,7 +9,7 @@ namespace Plugin.Localization.Platform.iOS
     {
         private CultureInfo _cultureInfo;
 
-        public CultureInfo GetCurrentCultureInfo()
+        public CultureInfo GetCurrentCultureInfo(ILanguageConvertor languageConvertor)
         {
             if (_cultureInfo != null)
             {
@@ -17,10 +17,15 @@ namespace Plugin.Localization.Platform.iOS
             }
 
             var netLanguage = "en";
+            if (languageConvertor is null)
+            {
+                return new CultureInfo(netLanguage);
+            }
+
             if (NSLocale.PreferredLanguages.Length > 0)
             {
                 var pref = NSLocale.PreferredLanguages[0];
-                netLanguage = iOSToDotnetLanguage(pref);
+                netLanguage = languageConvertor.IOsToDotnetLanguage(pref);
             }
 
             try
@@ -33,59 +38,17 @@ namespace Plugin.Localization.Platform.iOS
                 // fallback to first characters, in this case "en"
                 try
                 {
-                    var fallback = ToDotnetFallbackLanguage(new PlatformCulture(netLanguage));
+                    var fallback = languageConvertor.IOsToDotnetFallbackLanguage(netLanguage);
                     _cultureInfo = new CultureInfo(fallback);
                 }
                 catch (CultureNotFoundException)
                 {
                     // iOS language not valid .NET culture, falling back to English
-                    _cultureInfo = new CultureInfo("en");
+                    _cultureInfo = new CultureInfo(netLanguage);
                 }
             }
 
             return _cultureInfo;
-        }
-
-        private string iOSToDotnetLanguage(string iOSLanguage)
-        {
-            var netLanguage = iOSLanguage;
-            //certain languages need to be converted to CultureInfo equivalent
-            switch (iOSLanguage)
-            {
-                case "ms-MY":   // "Malaysian (Malaysia)" not supported .NET culture
-                case "ms-SG":   // "Malaysian (Singapore)" not supported .NET culture
-                    netLanguage = "ms"; // closest supported
-                    break;
-
-                case "gsw-CH":  // "Schwiizertüütsch (Swiss German)" not supported .NET culture
-                    netLanguage = "de-CH"; // closest supported
-                    break;
-
-                case "zh-Hans-CN":
-                    netLanguage = "zh-Hans";
-                    break;
-                    // add more application-specific cases here (if required)
-                    // ONLY use cultures that have been tested and known to work
-            }
-            return netLanguage;
-        }
-
-        private string ToDotnetFallbackLanguage(PlatformCulture platCulture)
-        {
-            var netLanguage = platCulture.LanguageCode; // use the first part of the identifier (two chars, usually);
-            switch (platCulture.LanguageCode)
-            {
-                case "pt":
-                    netLanguage = "pt-PT"; // fallback to Portuguese (Portugal)
-                    break;
-
-                case "gsw":
-                    netLanguage = "de-CH"; // equivalent to German (Switzerland) for this app
-                    break;
-                    // add more application-specific cases here (if required)
-                    // ONLY use cultures that have been tested and known to work
-            }
-            return netLanguage;
         }
     }
 }

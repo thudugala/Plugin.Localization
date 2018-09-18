@@ -1,24 +1,28 @@
-﻿using System.Globalization;
-using Plugin.Localization.Platform.Android;
+﻿using Plugin.Localization.Platform.Android;
+using System.Globalization;
 
 [assembly: Xamarin.Forms.Dependency(typeof(LocalizeHelper))]
-
 namespace Plugin.Localization.Platform.Android
 {
     public class LocalizeHelper : ILocalizeHelper
     {
         private CultureInfo _cultureInfo;
 
-        public CultureInfo GetCurrentCultureInfo()
+        public CultureInfo GetCurrentCultureInfo(ILanguageConvertor languageConvertor)
         {
-
             if (_cultureInfo != null)
             {
                 return _cultureInfo;
             }
 
+            var netLanguage = "en";
+            if (languageConvertor is null)
+            {
+                return new CultureInfo(netLanguage);
+            }
+
             var androidLocale = Java.Util.Locale.Default;
-            var netLanguage = AndroidToDotnetLanguage(androidLocale.ToString().Replace("_", "-"));
+            netLanguage = languageConvertor.AndroidToDotnetLanguage(androidLocale.ToString().Replace("_", "-"));
             try
             {
                 _cultureInfo = new CultureInfo(netLanguage);
@@ -29,56 +33,17 @@ namespace Plugin.Localization.Platform.Android
                 // fallback to first characters, in this case "en"
                 try
                 {
-                    var fallback = ToDotnetFallbackLanguage(new PlatformCulture(netLanguage));
+                    var fallback = languageConvertor.AndroidToDotnetFallbackLanguage(netLanguage);
                     _cultureInfo = new CultureInfo(fallback);
                 }
                 catch (CultureNotFoundException)
                 {
                     // android language not valid .NET culture, falling back to English
-                    _cultureInfo = new CultureInfo("en");
+                    _cultureInfo = new CultureInfo(netLanguage);
                 }
             }
 
             return _cultureInfo;
-        }
-
-        private static string AndroidToDotnetLanguage(string androidLanguage)
-        {
-            var netLanguage = androidLanguage;
-            //certain languages need to be converted to CultureInfo equivalent
-            switch (androidLanguage)
-            {
-                case "ms-BN":   // "Malaysian (Brunei)" not supported .NET culture
-                case "ms-MY":   // "Malaysian (Malaysia)" not supported .NET culture
-                case "ms-SG":   // "Malaysian (Singapore)" not supported .NET culture
-                    netLanguage = "ms"; // closest supported
-                    break;
-
-                case "in-ID":  // "Indonesian (Indonesia)" has different code in  .NET
-                    netLanguage = "id-ID"; // correct code for .NET
-                    break;
-
-                case "gsw-CH":  // "Schwiizertüütsch (Swiss German)" not supported .NET culture
-                    netLanguage = "de-CH"; // closest supported
-                    break;
-                    // add more application-specific cases here (if required)
-                    // ONLY use cultures that have been tested and known to work
-            }
-            return netLanguage;
-        }
-
-        private static string ToDotnetFallbackLanguage(PlatformCulture platCulture)
-        {
-            var netLanguage = platCulture.LanguageCode; // use the first part of the identifier (two chars, usually);
-            switch (platCulture.LanguageCode)
-            {
-                case "gsw":
-                    netLanguage = "de-CH"; // equivalent to German (Switzerland) for this app
-                    break;
-                    // add more application-specific cases here (if required)
-                    // ONLY use cultures that have been tested and known to work
-            }
-            return netLanguage;
         }
     }
 }
