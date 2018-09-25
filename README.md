@@ -1,4 +1,4 @@
-<img src="Screenshots/icon.png" alt="icon" width="64px" >
+mg src="Screenshots/icon.png" alt="icon" width="64px" >
 
 # Plugin.Localization
 Build cross-platform multilingual applications with Xamarin.Forms using the built-in .NET localization framework.
@@ -16,6 +16,77 @@ Build cross-platform multilingual applications with Xamarin.Forms using the buil
 |Xamarin.Android|Yes|API 16+|Project should [target Android framework 8.1+](https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/android-api-levels?tabs=vswin#framework)|
 
 # Usage
+
+### Getting Started
+
+Add Resource file
+
+
+
+Add Resource per language.
+
+
+
+### Localizing XAML
+
+Set the Resource to Public
+
+
+
+How to use in XAML
+
+
+### Code Change.
+
+Android and IOS projects automatically sets the resource's culture correctly to the CultureInfo.InstalledUICulture. Also set the Culture in all the resource's in all the assemblies. Only need to reference this package if that is not the case.
+
+```csharp
+using System;
+using System.Globalization;
+using Plugin.Localization;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+
+//translateManager only set Culture in resource's, only when Attribute is set.
+[assembly: ResxLocalize]
+
+namespace Local.Sample
+{
+    public partial class App : Application
+    {
+        public App()
+        {
+            InitializeComponent();
+            
+            var localizeHelper = DependencyService.Resolve<ILocalizeHelper>();
+            var languageConvertor = new LanguageConvertor();
+            var translateManager = new TranslateManager(localizeHelper, languageConvertor);
+
+            // Set Culture in all the resource's in all the assemblies that has ResxLocalize Attribute.
+            translateManager.SetCulture();
+
+            MainPage = new MainPage();
+        }
+
+        protected override void OnStart()
+        {
+            
+        }
+
+        protected override void OnSleep()
+        {
+            // Handle when your app sleeps
+        }
+
+        protected override void OnResume()
+        {
+            // Handle when your app resumes
+        }
+    }
+}
+```
 
 # Limitations
 
