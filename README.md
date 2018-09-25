@@ -1,4 +1,4 @@
-mg src="Screenshots/icon.png" alt="icon" width="64px" >
+<img src="Screenshots/icon.png" alt="icon" width="64px" >
 
 # Plugin.Localization
 Build cross-platform multilingual applications with Xamarin.Forms using the built-in .NET localization framework.
@@ -21,20 +21,21 @@ Build cross-platform multilingual applications with Xamarin.Forms using the buil
 
 Add Resource file
 
-
+<img src="Screenshots/AddResourceFile.png" alt="Add Resource File" >
 
 Add Resource per language.
 
-
+<img src="Screenshots/ResourcePerLanguage.png" alt="Resource Per Language" >
 
 ### Localizing XAML
 
 Set the Resource to Public
 
-
+<img src="Screenshots/ResourceToPublic.png" alt="Resource To Public" >
 
 How to use in XAML
 
+<img src="Screenshots/LocalizingXAML.png" alt="Localizing XAML" >
 
 ### Code Change.
 
