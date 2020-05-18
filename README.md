@@ -1,3 +1,7 @@
+# Using Xamarin.Forms String Localization, What this plugging was trying to achieve can be achieved now.
+
+https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/localization/text?pivots=windows
+
 <img src="Screenshots/icon.png" alt="icon" width="64px" >
 
 # Plugin.Localization
